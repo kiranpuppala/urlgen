@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+
+App name: <input id="app_name" type=text/>
+Packagename : <input id="package" type=text/>
+
+<button onclick="generateLinks()"> Generate Links</button><br>
+
+
+<p style="margin : 40px 0 0 10"></p>
+<textarea id="output" rows = "4" cols="100"></textarea><br>
+<button onclick="copyit()"> Copy to clipboard</button>
+<script>
+
+function generateLinks(){
+    var app_name = document.getElementById("app_name").value;
+    var package = document.getElementById("package").value;
+    var output = document.getElementById("output");
+
+    var sandbox = "https://sandbox.juspay.in/pay/sdk-response/apps/"+ package + "?app_name=" + encodeURI(app_name);
+    var api = "https://api.juspay.in/pay/sdk-response/apps/"+ package + "?app_name=" + encodeURI(app_name);
+
+    output.value = sandbox + "\n" + api;
+}
+
+function copyit(){
+    var output = document.getElementById("output");
+    output.select();
+    document.execCommand("copy");
+    alert("Copied the text: " + output.value);
+
+}
+
+</script>
+
+</html>
